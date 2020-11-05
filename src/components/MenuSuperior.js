@@ -8,8 +8,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 const Cabecalho =styled.div`
-    background-color:#F2EFE4;
-    padding: 2em;
+    background-color:#fffcef;
+    padding: 1em;
     display:flex;
     justify-content:space-between;
     align-items: center;
