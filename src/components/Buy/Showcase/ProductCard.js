@@ -6,6 +6,7 @@ import styled from 'styled-components'
 const CardContainer = styled.div`
     border: 1px dotted #F2C063;
     text-align: center;
+    background-color: #F2C063;
 `
 
 const ProductPicture = styled.img`
@@ -31,7 +32,7 @@ class ProductCard extends React.Component {
     render() {
         return (
             <CardContainer>
-                <ProductPicture src= 'https://picsum.photos/100/150'/>
+                <ProductPicture src= 'https://picsum.photos/300'/>
                 <CardInfo>
                     <p>Nome</p>
                     <p>Descrição</p>
@@ -42,7 +43,7 @@ class ProductCard extends React.Component {
                     <Button
                         variant='contained'
                         color= 'primary'
-                        size='medium'
+                        size='small'
                         startIcon={<AddShoppingCartIcon />}
                     >
                         Adicionar ao carrinho!
