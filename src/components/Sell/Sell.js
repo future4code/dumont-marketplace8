@@ -76,7 +76,7 @@ class Sell extends React.Component {
                 <input value={this.state.installments} onChange={this.onChangeInstallments}placeholder="Parcelas"/>
                 <input value={this.state.category} onChange={this.onChangeCategory}placeholder="Categoria"/>
                 <input value={this.state.photos} onChange={this.onChangePhotos}placeholder="URL Fotos"/>
-                <button onClick={this.createProducts}>Criar Usuário</button>
+                <button onClick={this.createProducts}>Criar Produtos</button>
                 {currentPage}
                 <button onClick={this.changePage}>Lista de Produtos</button>
             </div>
