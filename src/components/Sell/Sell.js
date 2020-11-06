@@ -1,11 +1,12 @@
 import React from 'react';
-import MenuSuperior from '../MenuSuperior';
 import axios from "axios";
+import ListProducts from './ListProducts';
 
 
 
 class Sell extends React.Component {
  state ={
+    listProducts: true,
     products:[
     {
     name: "",
@@ -19,19 +20,6 @@ class Sell extends React.Component {
     }
   ]
  }
-
- componentDidMount =() =>{
-     this.getProducts()
- }
-
- getProducts = () =>{
-     axios.get("https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products")
-     .then((response) => {this.setState({products: response.data})
-    })
-    .catch((error) =>{console.log(error.message)
-    })
- }
-
  createProducts = () =>{
      const body ={
          name: this.state.name,
@@ -39,7 +27,7 @@ class Sell extends React.Component {
          price: Number(this.state.price),
          paymentMethod: this.state.paymentMethod,
          category: this.state.category,
-         photos: this.state.photos,
+         photos: [this.state.photos],
          installments: Number(this.state.installments)
          
      }
@@ -70,8 +58,15 @@ class Sell extends React.Component {
      onChangeDescription = (event) =>{this.setState({description: event.target.value})}
      onChangePhotos = (event) =>{this.setState({photos: event.target.value})}
 
+     changePage = () => {
+        this.setState({ list: !this.state.listProducts });
+      };
+
  
     render() {
+        const currentPage = this.state.listProducts ? <Sell/> : <ListProducts/>
+
+
         return (
             <div>
                 <input value={this.state.name} onChange={this.onChangeName} placeholder="Nome"/>
@@ -82,6 +77,8 @@ class Sell extends React.Component {
                 <input value={this.state.category} onChange={this.onChangeCategory}placeholder="Categoria"/>
                 <input value={this.state.photos} onChange={this.onChangePhotos}placeholder="URL Fotos"/>
                 <button onClick={this.createProducts}>Criar Usuário</button>
+                {currentPage}
+                <button onClick={this.changePage}>Lista de Produtos</button>
             </div>
         )
     }
