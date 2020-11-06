@@ -30,29 +30,7 @@ const Buttons = styled.div`
   `
 
 class Home extends React.Component {
-    state = { 
-        currentScreen: "home"
-    };
-    
-    goShopping = () => {
-        this.setState({ currentScreen: "sell" });
-    };
-    
-    goSelling = () => {
-        this.setState({ currentScreen: "buy" });
-    };
-    
-    render() {
-        const screenUpdate = () => {
-            switch (this.state.currentScreen){
-                case "buy":
-                    return <Buy/>;
-                case "sell":
-                    return <Sell/>;
-                default:
-                    return <div>Erro! Página não encontrada</div>;
-            }
-        };
+    render (){
     
         return(
             <div>
@@ -63,21 +41,15 @@ class Home extends React.Component {
                     <b>O que você deseja fazer?</b>
                 </Section>
                 <Buttons>
-                    {/* <Button variant="contained" color="tercery" onClick = {this.goShopping}>
+                    <Button variant="contained" color="tercery" onClick = {this.props.sellButton}>
                         Vender
                     </Button>
-                    <Button variant="contained" color="secondary" onClick = {this.goSelling} >
+                    <Button variant="contained" color="secondary" onClick = {this.props.shopButton} >
                         Comprar
-                    </Button> */}
-                     <button onClick = {this.goShopping}>
-                        Vender
-                    </button>
-                    <button onClick = {this.goSelling} >
-                        Comprar
-                    </button>
+                    </Button>
                 </Buttons>
         
-                {screenUpdate()}
+               
                 
             </div>
         );
