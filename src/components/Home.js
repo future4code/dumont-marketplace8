@@ -42,10 +42,10 @@ class Home extends React.Component {
                 </Section>
                 <Buttons>
                     <Button variant="contained" color="tercery" onClick = {this.props.sellButton}>
-                        Vender
+                        Comprar
                     </Button>
                     <Button variant="contained" color="secondary" onClick = {this.props.shopButton} >
-                        Comprar
+                        Vender
                     </Button>
                 </Buttons>
         
