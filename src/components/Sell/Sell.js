@@ -28,12 +28,12 @@ class Sell extends React.Component {
          paymentMethod: this.state.paymentMethod,
          category: this.state.category,
          photos: [this.state.photos],
-         installments: Number(this.state.installments)
+         installments: Number(this.state.installments) 
          
      }
      axios.post("https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products",body)
      .then((response) =>{
-         alert("Produto Criado com sucesso!!")
+         alert("Produto Criado com sucesso!!!!!")
          this.setState({
          name:"",
          description:"",
