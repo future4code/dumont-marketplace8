@@ -2,13 +2,22 @@ import React from 'react';
 import axios from "axios";
 import styled from "styled-components";
 
-const BtnDelete = styled.span`
-  color: red;
-  margin-left: 10px;
-`;
+const ItensList = styled.div`
+    display: flex;
+    align-items: center;
+    margin-left: 25em;
+`
+const ButtonDelete = styled.button`
+    background-color:#f24141; 
+    border:none;
+    margin-left:2em;
+`
+const ListContainer = styled.div`
+   background-color:#fffcef;
+`
 
 const baseUrl =
-  "https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products/:id";
+  "https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products";
 
 class ListProducts extends React.Component {
     state ={
@@ -21,7 +30,7 @@ class ListProducts extends React.Component {
    
     getProducts = () =>{
         axios.get("https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products")
-        .then((response) => {this.setState({list: response.data})
+        .then((response) => {this.setState({list: response.data.products})
        })
        .catch((error) =>{console.log(error.message)
        })
@@ -42,12 +51,15 @@ class ListProducts extends React.Component {
     render() {
         const renderList = this.state.list.map((item) =>{
             return(
-              <div>
-                <p key={item.id}>
+              <ListContainer>
+                <ItensList>
+                  <p key={item.id}>
                     {item.name}
-                    <BtnDelete onClick={() => this.deleteProducts(item.id)}>X</BtnDelete>
-                </p>
-              </div>
+                  </p>
+                  <ButtonDelete onClick={() => this.deleteProducts(item.id)}>X</ButtonDelete>
+                </ItensList>                
+              </ListContainer>
+              
             )
         })
 
