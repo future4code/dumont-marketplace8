@@ -22,6 +22,7 @@ const ImgLogo =styled.img`
 class MenuSuperior extends React.Component {
     state={
         value:"",
+        
     }
    
     handleChange = (event) => {

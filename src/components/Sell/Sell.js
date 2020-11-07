@@ -2,6 +2,31 @@ import React from 'react';
 import axios from "axios";
 //import SellAll from '../../SellAll';
 //import ListProducts from './components/Sell/ListProducts';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import styled from "styled-components"
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
+const FormContainer =styled.div`
+    background-color:#fffcef;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    
+`
+const InputContainer=styled.div`
+    margin:0.5em;
+`
 
 class Sell extends React.Component {
  state ={
@@ -13,7 +38,7 @@ class Sell extends React.Component {
     paymentMethod:"",
     category:"",
     photos:[],
-    installments:""
+    installments:"",
     
     }
   ]
@@ -58,24 +83,49 @@ class Sell extends React.Component {
      onChangeDescription = (event) =>{this.setState({description: event.target.value})}
      onChangePhotos = (event) =>{this.setState({photos: event.target.value})}
 
-         
+     
 
     render() {
         
-        return (
-           <div>
-                <input value={this.state.name} onChange={this.onChangeName} placeholder="Nome"/>
-                <input value={this.state.description} onChange={this.onChangeDescription}placeholder="Descrição"/>
-                <input value={this.state.price} onChange={this.onChangePrice} placeholder="Preço"/>
-                <input value={this.state.paymentMethod} onChange={this.onChangePaymentMethod}placeholder="Forma de Pgto"/>
-                <input value={this.state.installments} onChange={this.onChangeInstallments}placeholder="Parcelas"/>
-                <input value={this.state.category} onChange={this.onChangeCategory}placeholder="Categoria"/>
-                <input value={this.state.photos} onChange={this.onChangePhotos}placeholder="URL Fotos"/>
-                <button onClick={this.createProducts}>Criar Produtos</button>
-               
-              
-            </div>
-           
+        return (<div>
+            
+           <FormContainer>
+               <InputContainer>
+                    <TextField required id="outlined-required" label="Nome" value={this.state.name} variant="outlined"onChange={this.onChangeName}/>
+               </InputContainer>
+
+               <InputContainer>
+                    <TextField required id="outlined-required" label="Descrição" value={this.state.description} variant="outlined"onChange={this.onChangeDescription} />
+                </InputContainer>
+
+                <InputContainer>
+                    <TextField id="outlined-number" label="Preço" type="number" value={this.state.price}  variant="outlined" onChange={this.onChangePrice}/>
+                </InputContainer>
+
+                <InputContainer>
+                    <TextField required id="outlined-required" label="Forma de Pagamento" value={this.state.paymentMethod} variant="outlined"onChange={this.onChangePaymentMethod}/>
+                </InputContainer>
+
+                <InputContainer>
+                    <TextField id="outlined-number" label="Parcelas" type="number" value={this.state.installments} variant="outlined" onChange={this.onChangeInstallments}/>
+                </InputContainer>
+
+                <InputContainer>
+                    <TextField required id="outlined-required" label="Categoria" value={this.state.category} variant="outlined"onChange={this.onChangeCategory}/>
+                </InputContainer>
+
+                <InputContainer>
+                    <TextField required id="outlined-required" label="Endereço da Imagem" value={this.state.photos} variant="outlined"onChange={this.onChangePhotos}/>
+                </InputContainer>
+
+                <InputContainer>            
+                    <Button variant="contained" color="primary"onClick={this.createProducts}>
+                        Criar o meu produto!
+                     </Button>
+                </InputContainer>
+            </FormContainer>
+        </div>
+
         )
     }
 }

@@ -5,7 +5,7 @@ import  Home  from './components/Home'
 import styled from "styled-components";
 import Buy from './components/Buy/Buy';
 //import  Sell  from './components/Sell/Sell';
-import SellAll from './SellAll';
+import SellAll from './components/Sell/SellAll';
 
 
 const Header =styled.div`
