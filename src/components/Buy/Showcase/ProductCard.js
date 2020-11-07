@@ -24,29 +24,33 @@ const CardInfo = styled.div`
     padding: 16px;
 
     p{
-        margin: 4px;
+        margin: 6px;
     }
 `
 
 class ProductCard extends React.Component {
     render() {
+        const product = this.props.product
+        
         return (
             <CardContainer>
-                <ProductPicture src= 'https://picsum.photos/300'/>
+                <ProductPicture src={product.photos}/>
                 <CardInfo>
-                    <p>Nome</p>
-                    <p>Descrição</p>
-                    <p>Categoria</p>
-                    <p>Preço</p>
-                    <p>Método de Pagamento</p>
-                    <p>Parcelamento</p>
+                    <p><strong>Nome:</strong> {product.name}</p>
+                    <p><strong>Descrição:</strong> {product.description}</p>
+                    <p><strong>Categoria:</strong> {product.category}</p>
+                    <p><strong>Preço:</strong> R${product.price},00</p>
+                    <p><strong>Pagamento:</strong> {product.paymentMethod}</p>
+                    <p><strong>Parcelamento:</strong>{product.installments}</p>
+                    <hr />
                     <Button
+                        onClick={() => this.props.onAddProductToCart(product.id)}
                         variant='contained'
                         color= 'primary'
                         size='small'
                         startIcon={<AddShoppingCartIcon />}
                     >
-                        Adicionar ao carrinho!
+                        Adicionar à ecobag!
                     </Button>
                 </CardInfo>
 
