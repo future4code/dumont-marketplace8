@@ -1,10 +1,11 @@
-import { render } from '@testing-library/react';
+//import { render } from '@testing-library/react';
 import React from 'react'
-import { AppContainer } from './components/AppContainer'
+//import { AppContainer } from './components/AppContainer'
 import  Home  from './components/Home'
 import styled from "styled-components";
 import Buy from './components/Buy/Buy';
-import  Sell  from './components/Sell/Sell';
+//import  Sell  from './components/Sell/Sell';
+import SellAll from './SellAll';
 
 
 const Header =styled.div`
@@ -62,7 +63,7 @@ class App extends React.Component {
                     return <Buy/>;
                     
                 case "sell":
-                    return <Sell/>;
+                    return <SellAll/>;
                     
                 default:
                     return <div>Erro! Página não encontrada</div>;

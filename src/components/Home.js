@@ -41,7 +41,7 @@ class Home extends React.Component {
                     <b>O que você deseja fazer?</b>
                 </Section>
                 <Buttons>
-                    <Button variant="contained" color="tercery" onClick = {this.props.sellButton}>
+                    <Button variant="contained" color="primary" onClick = {this.props.sellButton}>
                         Comprar
                     </Button>
                     <Button variant="contained" color="secondary" onClick = {this.props.shopButton} >

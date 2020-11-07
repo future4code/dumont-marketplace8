@@ -42,10 +42,12 @@ class ListProducts extends React.Component {
     render() {
         const renderList = this.state.list.map((item) =>{
             return(
+              <div>
                 <p key={item.id}>
                     {item.name}
                     <BtnDelete onClick={() => this.deleteProducts(item.id)}>X</BtnDelete>
                 </p>
+              </div>
             )
         })
 
