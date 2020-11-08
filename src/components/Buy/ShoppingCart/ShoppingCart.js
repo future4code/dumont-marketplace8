@@ -22,7 +22,7 @@ class ShoppingCart extends React.Component {
         return (
             <CarrinhoContainer>
                 <h3>Eco Bag!</h3>
-                <ShoppingCartItem />
+                
             
              <div>
                 {this.props.listaDoCarrinho.map((productCar)=>{

@@ -16,8 +16,8 @@ class ShoppingCartItem extends React.Component {
     render() {
         return (
             <ItensCarrinho>
-                {/* <p>{this.props.itemCar.quantity}</p>
-                <p>{this.props.itemCar.name}</p> */}
+                <p>{this.props.itemCar.quantity}</p>
+                <p>{this.props.itemCar.name}</p> 
                 <EstiloBotao onClick={()=>this.props.removeProdutoCarrinho(this.props.itemCar.id)}>X</EstiloBotao>
 
             </ItensCarrinho>
