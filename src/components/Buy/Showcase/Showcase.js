@@ -13,7 +13,9 @@ class Showcase extends React.Component {
     render() {
         return (
             <ProductsGrid>
-                <ProductCard />
+                <ProductCard
+                    addProdutoCarrinho={this.props.addProdutoCarrinho}
+                />
                 <ProductCard />
                 <ProductCard />
                 <ProductCard />

@@ -45,6 +45,7 @@ class ProductCard extends React.Component {
                         color= 'primary'
                         size='small'
                         startIcon={<AddShoppingCartIcon />}
+                        onClick={() => this.props.addProdutoCarrinho(produto.id)}
                     >
                         Adicionar ao carrinho!
                     </Button>
