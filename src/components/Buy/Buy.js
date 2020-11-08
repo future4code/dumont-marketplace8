@@ -91,6 +91,19 @@ const products = [
 
 class Buy extends React.Component {
     state = {
+        minFilter: "",
+        maxFilter: "",
+        nameFilter: "",
+        categoryFilter: "",
+        productsList: products,
+    }
+
+    componentDidMount() {
+        this.getFilteredAndOrderedList()
+    }
+
+    onAddProductToCart = (productId) => {
+        const productInCart = this.state.productsInCart.find(product => productId === product.id)
 
         listaDoCarrinho:[    ]
      }
@@ -102,7 +115,6 @@ class Buy extends React.Component {
         if(localStorage.getItem("listaDoCarrinho")){
         this.setState({listaDoCarrinho:JSON.parse(localStorage.getItem("listaDoCarrinho"))})}
     }
-
     
     addProdutoCarrinho = (produtoId) => {
          const produtoNoCarrinho=this.state.listaDoCarrinho.find((produto)=>produtoId===produto.id)
@@ -165,22 +177,100 @@ class Buy extends React.Component {
     //     }
     // }
 
+    getFilteredAndOrderedList = () => {
+        const filteredList = products
+            .filter((product) => {
+                if (this.state.minFilter) {
+                    return(product.price >= Number(this.state.minFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            .filter((product) => {
+                if (this.state.maxFilter) {
+                    return(product.price <= Number(this.state.maxFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            .filter((product) => {
+                if (this.state.nameFilter) {
+                    return(this.state.nameFilter && product.name.includes(this.state.nameFilter))
+                } else {
+                    return true
+                }
+            })
+
+            .filter((product) => {
+                if (this.state.categoryFilter) {
+                    return(this.state.categoryFilter && product.category.includes(this.state.categoryFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            return (
+                filteredList
+            )
+    }
+
+    onChangeMinFilter = (event) => {
+        this.setState({
+            minFilter: event.target.value
+        })
+    }
+    
+    onChangeMaxFilter = (event) => {
+        this.setState({
+            maxFilter: event.target.value
+        })
+    }
+    
+    onChangeNameFilter = (event) => {
+        this.setState({
+            nameFilter: event.target.value
+        })
+    }
+
+    onChangeCategoryFilter = (event) => {
+        this.setState({
+            categoryFilter: event.target.value
+        })
+    }
+
     render() {
         
         return (
             <BuyContainer>
                 <MenuSuperior shopButton ={this.props.shopButton} />
                 <SectionsGrid>
-                    <Filters />
-
-                    <Showcase
-                        products={products} 
+                    <Filters 
+                        minFilter={this.state.minFilter}
+                        maxFilter={this.state.maxFilter}
+                        nameFilter={this.state.nameFilter}
+                        categoryFilter={this.state.categoryFilter}
+                        onChangeMinFilter={this.onChangeMinFilter}
+                        onChangeMaxFilter={this.onChangeMaxFilter}
+                        onChangeNameFilter={this.onChangeNameFilter}
+                        onChangeCategoryFilter={this.onChangeCategoryFilter}
+                    />
+                    <Showcase 
+                        products={this.getFilteredAndOrderedList()} 
+                        minFilter={this.state.minFilter}
+                        maxFilter={this.state.maxFilter}
+                        nameFilter={this.state.nameFilter}
+                        categoryFilter={this.state.categoryFilter}
                         addProdutoCarrinho={this.addProdutoCarrinho}
-                     />
+                        products={products}
+                    />
+              
                     <ShoppingCart 
                         listaDoCarrinho={this.state.listaDoCarrinho}
                         removeProdutoCarrinho={this.removeProdutoCarrinho}
                     />
+                          
                 </SectionsGrid>
             </BuyContainer>
         )
