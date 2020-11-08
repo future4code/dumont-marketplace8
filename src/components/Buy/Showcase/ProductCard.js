@@ -43,15 +43,12 @@ class ProductCard extends React.Component {
                     <p><strong>Pagamento:</strong> {product.paymentMethod}</p>
                     <p><strong>Parcelamento:</strong>{product.installments}</p>
                     <hr />
-                    <Button
-                        onClick={() => this.props.onAddProductToCart(product.id
-                            // , product.photos, product.name, product.price, product.description, product.category, product.paymentMethod, product.installments
-                        )}
+                    <Button onClick={() => this.props.addProdutoCarrinho(product.id)}
                         variant='contained'
                         color= 'primary'
                         size='small'
                         startIcon={<AddShoppingCartIcon />}
-                    >
+                     >
                         Adicionar à ecobag!
                     </Button>
                 </CardInfo>

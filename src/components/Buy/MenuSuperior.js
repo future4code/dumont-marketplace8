@@ -35,7 +35,7 @@ class MenuSuperior extends React.Component {
             <Cabecalho>
                 <ImgLogo src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3e415fe9-43f0-4dc4-b950-e2818853cef1%2F2.png?table=block&id=ebade8dc-9faa-452f-9db2-31fc11607482&width=2730&userId=&cache=v2"/>
                 
-                <Button variant="contained" color="secondary">
+                <Button variant="contained" color="secondary" onClick={this.props.shopButton}>
                     Ei, Eu também quero vender!
                 </Button>
                     
