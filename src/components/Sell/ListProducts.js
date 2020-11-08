@@ -55,7 +55,14 @@ class ListProducts extends React.Component {
                 <ItensList>
                   <p key={item.id}>
                     {item.name}
-                  </p>
+                  </p><br/>
+
+                  <p key={item.id}>
+                    {item.price}
+                  </p><br/>
+
+                  <img src= {item.photos} key={item.id}/>
+                  
                   <ButtonDelete onClick={() => this.deleteProducts(item.id)}>X</ButtonDelete>
                 </ItensList>                
               </ListContainer>
