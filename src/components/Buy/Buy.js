@@ -7,8 +7,9 @@ import Showcase from './Showcase/Showcase';
 import ShoppingCart from './ShoppingCart/ShoppingCart';
 
 const SectionsGrid = styled.div`
-    display: flex;
-    background-color: #F2EFE4;
+    display: grid;
+    background-color: #fffcef;
+    grid-template-columns: 1fr 3fr 1fr;
     
 `
 
@@ -96,17 +97,12 @@ class Buy extends React.Component {
         nameFilter: "",
         categoryFilter: "",
         productsList: products,
+        listaDoCarrinho: []
     }
 
     componentDidMount() {
         this.getFilteredAndOrderedList()
     }
-
-    onAddProductToCart = (productId) => {
-        const productInCart = this.state.productsInCart.find(product => productId === product.id)
-
-        listaDoCarrinho:[    ]
-     }
  
     componentDidUpdate=()=>{
         localStorage.setItem("listaDoCarrinho", JSON.stringify(this.state.listaDoCarrinho))
