@@ -13,20 +13,10 @@ class Showcase extends React.Component {
     render() {
         return (
             <ProductsGrid>
-
-                <ProductCard
-                    addProdutoCarrinho={this.props.addProdutoCarrinho}
-                />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-
-                {this.props.products.map((product) => {
+            {this.props.products.map((product) => {
                     return <ProductCard 
                                 product={product} 
-                                onAddProductToCart={this.props.onAddProductToCart} 
+                                addProdutoCarrinho={this.props.addProdutoCarrinho} 
                             />
                 })}
 

@@ -12,8 +12,8 @@ const CarrinhoContainer = styled.div`
 class ShoppingCart extends React.Component {
     getValorTotal=()=>{
         let valorTotal=0
-        for(let produtos of this.props.adicionaCarrinho){
-            valorTotal+=produtos.preço*produtos.quantidade
+        for(let produtos of this.props.listaDoCarrinho){
+            valorTotal+=produtos.price*produtos.quantity
         }
         return valorTotal
     }
@@ -25,10 +25,10 @@ class ShoppingCart extends React.Component {
                 <ShoppingCartItem />
             
              <div>
-                {this.props.adicionaCarrinho.map((produto)=>{
+                {this.props.listaDoCarrinho.map((productCar)=>{
                 return <ShoppingCartItem 
-                itemCar={produto}
-                removeProdutoCarrinho={this.props. removeProdutoCarrinho}/>  })}
+                itemCar={productCar}
+                removeProdutoCarrinho={this.props.removeProdutoCarrinho}/>  })}
             </div>
             <hr/>
             <p>Valor Total: R${this.getValorTotal()}</p>
