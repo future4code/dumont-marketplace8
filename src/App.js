@@ -38,6 +38,7 @@ class App extends React.Component {
 
 	state = { 
         currentScreen: "home"
+        
     };
     
     goShopping = () => {
@@ -60,10 +61,10 @@ class App extends React.Component {
 					return <Home sellButton ={this.goSelling} shopButton ={this.goShopping} />
 
                 case "buy":
-                    return <Buy/>;
+                    return <Buy sellButton ={this.goSelling} shopButton ={this.goShopping}/>;
                     
                 case "sell":
-                    return <SellAll/>;
+                    return <SellAll sellButton ={this.goSelling} shopButton ={this.goShopping}/>;
                     
                 default:
                     return <div>Erro! Página não encontrada</div>;
