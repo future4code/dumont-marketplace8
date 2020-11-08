@@ -44,7 +44,9 @@ class ProductCard extends React.Component {
                     <p><strong>Parcelamento:</strong>{product.installments}</p>
                     <hr />
                     <Button
-                        onClick={() => this.props.onAddProductToCart(product.id)}
+                        onClick={() => this.props.onAddProductToCart(product.id
+                            // , product.photos, product.name, product.price, product.description, product.category, product.paymentMethod, product.installments
+                        )}
                         variant='contained'
                         color= 'primary'
                         size='small'

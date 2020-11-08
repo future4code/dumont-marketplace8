@@ -60,7 +60,7 @@ const products = [
     {
         name: "produto 5",
         description:"produtãovish",
-        price:"10",
+        price:"20",
         paymentMethod:"dinheiro",
         category:"roupa",
         photos:['https://picsum.photos/200/?a=9', 'https://picsum.photos/200/?a=10'],
@@ -70,7 +70,7 @@ const products = [
     {
         name: "produto 6",
         description:"produtãovish6",
-        price:"10",
+        price:"30",
         paymentMethod:"dinheiro",
         category:"roupa",
         photos:['https://picsum.photos/200/?a=11', 'https://picsum.photos/200/?a=12'],
@@ -80,7 +80,7 @@ const products = [
     {
         name: "produto 7",
         description:"produtãovish",
-        price:"10",
+        price:"50",
         paymentMethod:"dinheiro",
         category:"roupa",
         photos:['https://picsum.photos/200/?a=13', 'https://picsum.photos/200/?a=14'],
@@ -91,6 +91,11 @@ const products = [
 
 class Buy extends React.Component {
     state = {
+        minFilter: "",
+        maxFilter: "",
+        nameFilter: "",
+        categoryFilter: "",
+        productsList: products,
         productsInCart: [{
             name: "produto 1 TESTE",
             description:"produtãovish",
@@ -122,6 +127,11 @@ class Buy extends React.Component {
             id:"3"
         },]
     }
+
+    componentDidMount() {
+        this.getFilteredAndOrderedList()
+    }
+
     onAddProductToCart = (productId) => {
         const productInCart = this.state.productsInCart.find(product => productId === product.id)
 
@@ -147,15 +157,91 @@ class Buy extends React.Component {
         }
     }
 
+    getFilteredAndOrderedList = () => {
+        const filteredList = products
+            .filter((product) => {
+                if (this.state.minFilter) {
+                    return(product.price >= Number(this.state.minFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            .filter((product) => {
+                if (this.state.maxFilter) {
+                    return(product.price <= Number(this.state.maxFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            .filter((product) => {
+                if (this.state.nameFilter) {
+                    return(this.state.nameFilter && product.name.includes(this.state.nameFilter))
+                } else {
+                    return true
+                }
+            })
+
+            .filter((product) => {
+                if (this.state.categoryFilter) {
+                    return(this.state.categoryFilter && product.category.includes(this.state.categoryFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            return (
+                filteredList
+            )
+    }
+
+    onChangeMinFilter = (event) => {
+        this.setState({
+            minFilter: event.target.value
+        })
+    }
+    
+    onChangeMaxFilter = (event) => {
+        this.setState({
+            maxFilter: event.target.value
+        })
+    }
+    
+    onChangeNameFilter = (event) => {
+        this.setState({
+            nameFilter: event.target.value
+        })
+    }
+
+    onChangeCategoryFilter = (event) => {
+        this.setState({
+            categoryFilter: event.target.value
+        })
+    }
+
     render() {
         return (
             <BuyContainer>
                 <MenuSuperior />
                 <SectionsGrid>
-                    <Filters />
+                    <Filters 
+                        minFilter={this.state.minFilter}
+                        maxFilter={this.state.maxFilter}
+                        nameFilter={this.state.nameFilter}
+                        categoryFilter={this.state.categoryFilter}
+                        onChangeMinFilter={this.onChangeMinFilter}
+                        onChangeMaxFilter={this.onChangeMaxFilter}
+                        onChangeNameFilter={this.onChangeNameFilter}
+                        onChangeCategoryFilter={this.onChangeCategoryFilter}
+                    />
                     <Showcase 
-                        products={products} 
+                        products={this.getFilteredAndOrderedList()} 
                         onAddProductToCart={this.onAddProductToCart}
+                        minFilter={this.state.minFilter}
+                        maxFilter={this.state.maxFilter}
+                        nameFilter={this.state.nameFilter}
+                        categoryFilter={this.state.categoryFilter}
                     />
                     <ShoppingCart />
                 </SectionsGrid>
