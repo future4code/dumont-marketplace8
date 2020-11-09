@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 const ItensList = styled.div`
     display: flex;
+    flex-direction:column;
     align-items: center;
-    margin-left: 25em;
+   
 `
 const ButtonDelete = styled.button`
     background-color:#f24141; 
@@ -14,33 +15,26 @@ const ButtonDelete = styled.button`
 `
 const ListContainer = styled.div`
    background-color:#fffcef;
+   
 `
-
+const ImgList = styled.img`
+  width:6em;
+  height:8em;
+`
 const baseUrl =
   "https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products";
 
 class ListProducts extends React.Component {
-    state ={
-        list: []
-    }
-
-    componentDidMount =() =>{
-        this.getProducts()
-    }
-   
-    getProducts = () =>{
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products")
-        .then((response) => {this.setState({list: response.data.products})
-       })
-       .catch((error) =>{console.log(error.message)
-       })
-    }
+      
+  componentDidMount(){ 
+    this.setState(this.props.list)
+}
 
     deleteProducts = (id) => {
         axios
           .delete(`${baseUrl}/${id}`)
           .then((response) => {
-            alert("Usuário deletado com sucesso!");
+            alert("Produto deletado com sucesso!");
             this.getProducts();
           })
           .catch((error) => {
@@ -49,21 +43,21 @@ class ListProducts extends React.Component {
       };
 
     render() {
-        const renderList = this.state.list.map((item) =>{
+        const renderList = this.props.list.map((item) =>{
             return(
               <ListContainer>
                 <ItensList>
                   <p key={item.id}>
-                    {item.name}
-                  </p><br/>
+                    Produto:{item.name}
+                  </p>
 
                   <p key={item.id}>
-                    {item.price}
-                  </p><br/>
+                    preço: R$ {item.price}
+                  </p>
 
-                  <img src= {item.photos} key={item.id}/>
+                  <ImgList src= {item.photos} key={item.id}/>
                   
-                  <ButtonDelete onClick={() => this.deleteProducts(item.id)}>X</ButtonDelete>
+                  <ButtonDelete onClick={() => this.deleteProducts(item.id)}>Apagar Produto da lista</ButtonDelete>
                 </ItensList>                
               </ListContainer>
               

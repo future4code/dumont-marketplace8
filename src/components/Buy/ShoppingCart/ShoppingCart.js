@@ -10,6 +10,9 @@ const CarrinhoContainer = styled.div`
 `
 
 class ShoppingCart extends React.Component {
+
+    
+
     getValorTotal=()=>{
         let valorTotal=0
         for(let produtos of this.props.listaDoCarrinho){
