@@ -27,7 +27,7 @@ class SellAll extends React.Component {
   };
 
   render() {
-    const currentPage = this.state.sell ? <Sell /> : <ListProducts />;
+    const currentPage = this.state.sell ? <Sell /> : <ListProducts list={this.props.list} />;
 
     return (
       <div>

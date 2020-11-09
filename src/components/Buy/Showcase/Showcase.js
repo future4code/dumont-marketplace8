@@ -10,14 +10,60 @@ const ProductsGrid = styled.div`
 `
 
 class Showcase extends React.Component {
+
+    componentDidMount(){
+        this.getFilteredAndOrderedList()
+    }
+   
+    getFilteredAndOrderedList = () => {
+        const filteredList =this.props.list
+            .filter((product) => {
+                if (this.props.minFilter) {
+                    return(product.price >= this.props.minFilter)
+                } else {
+                    return true
+                }
+            })
+    
+            .filter((product) => {
+                if (this.props.maxFilter) {
+                    return(product.price <= this.props.maxFilter)
+                } else {
+                    return true
+                }
+            })
+    
+            .filter((product) => {
+                if (this.props.nameFilter) {
+                    return(this.props.nameFilter && product.name.includes(this.props.nameFilter))
+                } else {
+                    return true
+                }
+            })
+
+            .filter((product) => {
+                if (this.props.categoryFilter) {
+                    return(this.props.categoryFilter && product.category.includes(this.props.categoryFilter))
+                } else {
+                    return true
+                }
+            })
+    
+            return (
+                filteredList
+            )
+    }
+
     render() {
+        const filterProducts = this. getFilteredAndOrderedList()
         return (
             <ProductsGrid>
-          {this.props.products.map((product) => {
+          {filterProducts.map((product) => {
                 return <ProductCard 
                         product={product} 
-                          addProdutoCarrinho={this.props.addProdutoCarrinho} 
-                            />
+                        addProdutoCarrinho={this.props.addProdutoCarrinho} 
+                        // getProducts={this.props.getProducts}   
+                    />
 
                 })}
 

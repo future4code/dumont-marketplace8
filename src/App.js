@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Buy from './components/Buy/Buy';
 //import  Sell  from './components/Sell/Sell';
 import SellAll from './components/Sell/SellAll';
+import axios from "axios";
 
 
 const Header =styled.div`
@@ -37,9 +38,22 @@ const Buttons = styled.div`
 class App extends React.Component {
 
 	state = { 
-        currentScreen: "home"
+        currentScreen: "home",
+        list: []
         
     };
+
+    componentDidMount =() =>{
+        this.getProducts()
+    }
+   
+    getProducts = () =>{
+        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/fourUsedTwo/products")
+        .then((response) => {this.setState({list: response.data.products})
+       })
+       .catch((error) =>{console.log(error.message)
+       })
+    }
     
     goShopping = () => {
         this.setState({ currentScreen: "sell" });
@@ -61,10 +75,12 @@ class App extends React.Component {
 					return <Home sellButton ={this.goSelling} shopButton ={this.goShopping} />
 
                 case "buy":
-                    return <Buy sellButton ={this.goSelling} shopButton ={this.goShopping}/>;
+                    return <Buy sellButton ={this.goSelling} shopButton ={this.goShopping} list={this.state.list}/>;
                     
                 case "sell":
-                    return <SellAll sellButton ={this.goSelling} shopButton ={this.goShopping}/>;
+                    return <SellAll sellButton ={this.goSelling} shopButton ={this.goShopping} 
+                    list={this.state.list}
+                    />;
                     
                 default:
                     return <div>Erro! Página não encontrada</div>;
