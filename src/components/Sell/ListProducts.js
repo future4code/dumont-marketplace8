@@ -26,9 +26,7 @@ const baseUrl =
 
 class ListProducts extends React.Component {
       
-  componentDidMount(){ 
-    this.setState(this.props.list)
-}
+  
 
     deleteProducts = (id) => {
         axios
